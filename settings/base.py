@@ -39,10 +39,12 @@ DJANGO_AND_THIRD_PARTY_APPS = [
     'django.contrib.staticfiles',
 
     'django_extensions',
+    'rest_framework',
 ]
 PROJECT_APPS = [
     'abstracts.apps.AbstractsConfig',
     'auths.apps.AuthsConfig',
+    'anime.apps.AnimeConfig',
 ]
 INSTALLED_APPS = DJANGO_AND_THIRD_PARTY_APPS + PROJECT_APPS
 

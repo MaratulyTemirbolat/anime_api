@@ -1,9 +1,25 @@
-from django.urls import path
-from auths.views import ListUsers
+from rest_framework.routers import DefaultRouter
 
+from django.urls import (
+    path,
+    include,
+)
 
-app_name = 'auths'
+from auths.views import CustomUserViewSet
+
+# ---------------------------------------------
+# API Endpoints
+#
+router: DefaultRouter = DefaultRouter(
+    trailing_slash=False
+)
+router.register('auths', CustomUserViewSet)
+
+app_name = 'router'
 
 urlpatterns = [
-    path('users/', ListUsers.as_view(), name='users')
+    path(
+        'api/v1/',
+        include((router.urls, app_name), namespace='v1')
+    )
 ]

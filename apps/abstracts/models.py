@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class AbstractDateTime(models.Model):
+class AbstractDateTime(models.Model):  # noqa
     datetime_created = models.DateTimeField(
         verbose_name='время создания',
         auto_now_add=True
@@ -16,5 +16,5 @@ class AbstractDateTime(models.Model):
         blank=True
     )
 
-    class Meta:
+    class Meta:  # noqa
         abstract = True

@@ -6,6 +6,9 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.core.exceptions import ValidationError
+from django.db.models import QuerySet
+
+from abstracts.models import AbstractDateTime
 
 
 class CustomUserManager(BaseUserManager):  # noqa
@@ -43,8 +46,15 @@ class CustomUserManager(BaseUserManager):  # noqa
         user.save(using=self._db)
         return user
 
+    def get_non_deleted(self) -> QuerySet:  # noqa
+        return self.filter(datetime_deleted__isnull=True)
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):  # noqa
+
+class CustomUser(
+    AbstractBaseUser,
+    PermissionsMixin,
+    AbstractDateTime
+):  # noqa
     email = models.EmailField(
         'Почта/Логин', unique=True
     )

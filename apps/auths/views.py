@@ -4,7 +4,6 @@ from typing import (
 from datetime import datetime
 
 from rest_framework import (
-    # authentication,
     permissions,
 )
 from rest_framework.decorators import action

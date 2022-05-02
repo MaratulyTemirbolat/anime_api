@@ -1,3 +1,4 @@
+"""Data generation for Anime api."""
 from typing import (
     Optional,
     Dict,

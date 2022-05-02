@@ -1,6 +1,4 @@
-from typing import Optional
-from datetime import datetime
-
+"""All views (ViewSets, APIViews) for anime api."""
 from rest_framework import permissions
 from rest_framework.decorators import action
 from rest_framework.viewsets import ViewSet
@@ -14,7 +12,6 @@ from abstracts.paginators import (
     AbstractPageNumberPaginator,
     AbstractLimitOffsetPaginator,
 )
-from anime import serializers
 from anime.models import Anime
 from anime.serializers import (
     AnimeSerializer,

@@ -6,8 +6,8 @@ from rest_framework.serializers import (
     ModelSerializer,
     IntegerField,
     CharField,
-    EmailField,
-    BooleanField,
+    # EmailField,
+    # BooleanField,
     DateTimeField,
     SerializerMethodField,
 )

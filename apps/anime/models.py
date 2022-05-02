@@ -1,3 +1,4 @@
+"""Models (tables) for anime api."""
 from typing import (
     Tuple,
 )
@@ -131,7 +132,7 @@ class Anime(AbstractDateTime):
     def delete(self) -> None:  # noqa
         self.datetime_deleted = datetime.now()
         self.save(
-            update_field=['datetime_deleted']
+            update_fields=['datetime_deleted']
         )
         # super().delete()
 

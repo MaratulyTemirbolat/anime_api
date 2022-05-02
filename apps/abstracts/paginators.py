@@ -1,3 +1,4 @@
+"""Abstract custom paginators."""
 from rest_framework.response import Response as DRF_Response
 from rest_framework.pagination import (
     PageNumberPagination,

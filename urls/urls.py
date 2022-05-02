@@ -1,3 +1,4 @@
+"""Main urls for anime api."""
 from django.contrib import admin
 from django.urls import (
     path,
@@ -21,7 +22,10 @@ router.register('auths', CustomUserViewSet)
 router.register('anime', AnimeViewSet)
 
 urlpatterns = [
-    path(settings.ADMIN_SITE_URL, admin.site.urls),
+    path(
+        settings.ADMIN_SITE_URL,
+        admin.site.urls
+    ),
     path(
         'api/v1/',
         include(router.urls)
@@ -33,6 +37,7 @@ urlpatterns = [
     settings.MEDIA_URL,
     document_root=settings.MEDIA_ROOT
 )
+
 if settings.DEBUG:
     urlpatterns += [
         path('__debug__/', include('debug_toolbar.urls')),

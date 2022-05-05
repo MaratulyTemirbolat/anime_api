@@ -40,6 +40,7 @@ DJANGO_AND_THIRD_PARTY_APPS = [
 
     'django_extensions',
     'rest_framework',
+    'rest_framework_simplejwt',
 ]
 PROJECT_APPS = [
     'abstracts.apps.AbstractsConfig',

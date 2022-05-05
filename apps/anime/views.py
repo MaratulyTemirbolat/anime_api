@@ -47,13 +47,13 @@ class AnimeViewSet(ViewSet):
         """Handle GET-request to list Anime."""
         paginator: AbstractLimitOffsetPaginator = \
             AbstractLimitOffsetPaginator()
+        # print("---------------BREAKPOINT--------------------")
+        # breakpoint()
 
         objects: list = paginator.paginate_queryset(
             self.get_queryset(),
             request
         )
-        # print("---------------BREAKPOINT--------------------")
-        # breakpoint()
         serializer: AnimeSerializer = \
             self.serializer_class(
                 objects,

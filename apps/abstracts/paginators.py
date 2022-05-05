@@ -33,17 +33,22 @@ class AbstractPageNumberPaginator(PageNumberPagination):
 class AbstractLimitOffsetPaginator(LimitOffsetPagination):
     """AbstractLimitOffsetPaginator."""
 
-    offset: int = 0
     limit: int = 2
+    limit_query_param: str = 'limit'
+    offset: int = 0
+    offset_query_param: str = 'offset'
+    max_limit: int = 5
 
-    def get_paginated_response(self, data: ReturnList):  # noqa
-        response: DRF_Response = DRF_Response(
-            {
-                'pagination': {
-                    'next': self.get_next_link(),
-                    'previous': self.get_previous_link()
-                },
-                'data': data
-            }
-        )
+    def get_paginated_response(self, data: ReturnList) -> DRF_Response:
+        """Overriden method."""
+        response: DRF_Response = \
+            DRF_Response(
+                {
+                    'pagination': {
+                        'next': self.get_next_link(),
+                        'previous': self.get_previous_link(),
+                    },
+                    'data': data
+                }
+            )
         return response

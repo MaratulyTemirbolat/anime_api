@@ -15,9 +15,10 @@ from django.db.models import QuerySet
 
 from auths.models import CustomUser
 from auths.serializers import CustomUserSerializer
+from abstracts.handlers import DRFResponseHandler
 
 
-class CustomUserViewSet(ViewSet):
+class CustomUserViewSet(DRFResponseHandler, ViewSet):
     """
     ViewSet for CustomUser.
 
@@ -33,6 +34,7 @@ class CustomUserViewSet(ViewSet):
     )
     queryset: QuerySet[CustomUser] = \
         CustomUser.objects.get_non_deleted()
+    serializer_class: CustomUserSerializer = CustomUserSerializer
 
     def get_queryset(self) -> QuerySet[CustomUser]:  # noqa
         return self.queryset.filter(
@@ -49,16 +51,13 @@ class CustomUserViewSet(ViewSet):
     )
     def get_administrators(self, request: DRF_Request) -> DRF_Response:
         """Handle POST-request to show custom-info about custom_users."""
-        serializer: CustomUserSerializer = CustomUserSerializer(
-            self.queryset.filter(is_superuser=True),
+        response: DRF_Response = self.get_drf_response(
+            request=request,
+            data=self.queryset.filter(is_superuser=True),
+            serializer_class=self.serializer_class,
             many=True
         )
-
-        return DRF_Response(
-            {
-                "data": serializer.data
-            }
-        )
+        return response
 
     def list(self, request: DRF_Request) -> DRF_Response:
         """Return list of all users."""
@@ -66,6 +65,7 @@ class CustomUserViewSet(ViewSet):
             self.queryset,
             many=True
         )
+
         return DRF_Response(
             {'response': serializer.data}
         )

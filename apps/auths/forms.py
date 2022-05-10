@@ -6,25 +6,25 @@ from django.contrib.auth.forms import (
 from auths.models import CustomUser
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(UserCreationForm):  # noqa
 
-    class Meta:
+    class Meta:  # noqa
         model = CustomUser
         fields = (
             'email',
         )
 
 
-class CustomUserChangeForm(UserChangeForm):
+class CustomUserChangeForm(UserChangeForm):  # noqa
 
-    class Meta:
+    class Meta:  # noqa
         model = CustomUser
         fields = (
             'email',
         )
 
 
-class CustomUserForm(forms.ModelForm):
+class CustomUserForm(forms.ModelForm):  # noqa
     email = forms.EmailField(
         label='Почта'
     )
@@ -33,7 +33,7 @@ class CustomUserForm(forms.ModelForm):
         label='Пароль'
     )
 
-    class Meta:
+    class Meta:  # noqa
         model = CustomUser
         fields = (
             'email',

@@ -1,9 +1,9 @@
 from typing import (
     Tuple,
-    Optional,
+    # Optional,
 )
 
-from django.core.handlers.wsgi import WSGIRequest
+# from django.core.handlers.wsgi import WSGIRequest
 from django.contrib import admin
 
 from anime.models import (

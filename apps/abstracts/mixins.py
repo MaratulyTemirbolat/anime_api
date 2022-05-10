@@ -1,6 +1,3 @@
-from typing import (
-    Optional,
-)
 from django.core.handlers.wsgi import WSGIRequest
 from django.template import (
     loader,
@@ -21,7 +18,6 @@ class HttpResponseMixin:
         context: dict = {}
     ) -> HttpResponse:
         """Get HTTP response."""
-
         template: backends.django.Template =\
             loader.get_template(
                 template_name

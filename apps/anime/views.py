@@ -19,9 +19,10 @@ from anime.serializers import (
 from anime.permissions import (
     AnimePermission,
 )
+from abstracts.handlers import DRFResponseHandler
 
 
-class AnimeViewSet(ViewSet):
+class AnimeViewSet(DRFResponseHandler, ViewSet):
     """ViewSet for Anime."""
 
     permission_classes: tuple = (
@@ -47,22 +48,31 @@ class AnimeViewSet(ViewSet):
         """Handle GET-request to list Anime."""
         paginator: AbstractLimitOffsetPaginator = \
             AbstractLimitOffsetPaginator()
+
+        response: DRF_Response = self.get_drf_response(
+            request=request,
+            data=self.get_queryset(),
+            serializer_class=self.serializer_class,
+            many=True,
+            paginator=paginator
+        )
+
         # print("---------------BREAKPOINT--------------------")
         # breakpoint()
 
-        objects: list = paginator.paginate_queryset(
-            self.get_queryset(),
-            request
-        )
-        serializer: AnimeSerializer = \
-            self.serializer_class(
-                objects,
-                many=True
-            )
-        response: DRF_Response = \
-            paginator.get_paginated_response(
-                serializer.data
-            )
+        # objects: list = paginator.paginate_queryset(
+        #     self.get_queryset(),
+        #     request
+        # )
+        # serializer: AnimeSerializer = \
+        #     self.serializer_class(
+        #         objects,
+        #         many=True
+        #     )
+        # response: DRF_Response = \
+        #     paginator.get_paginated_response(
+        #         serializer.data
+        #     )
         return response
 
     def list(self, request: DRF_Request) -> DRF_Response:

@@ -131,10 +131,10 @@ class Anime(AbstractDateTime):
 
     def delete(self) -> None:  # noqa
         self.datetime_deleted = datetime.now()
+        # super().delete()
         self.save(
             update_fields=['datetime_deleted']
         )
-        # super().delete()
 
 
 class Genre(models.Model):

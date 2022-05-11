@@ -68,9 +68,9 @@ SHELL_PLUS_PRINT_SQL_TRUNCATE = 1000
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',  # noqa
     'PAGE_SIZE': 100,
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
 }
 
 # ------------------------------------------------
@@ -107,3 +107,23 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=15),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+# ------------------------------------------------
+# CORS CONFIGURATION
+#
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'authorization',
+    'content-type',
+    'user-agent',
+    'Access-Control-Allow-Origin',
+)
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'PUT',
+    'PATCH',
+    'POST',
+)

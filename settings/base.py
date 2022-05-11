@@ -38,6 +38,7 @@ DJANGO_AND_THIRD_PARTY_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'django_extensions',
     'rest_framework',
     'rest_framework_simplejwt',
@@ -61,6 +62,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Middleware | Templates | Validators
 #
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # cors middleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

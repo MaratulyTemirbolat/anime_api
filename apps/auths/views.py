@@ -61,14 +61,14 @@ class CustomUserViewSet(DRFResponseHandler, ViewSet):
 
     def list(self, request: DRF_Request) -> DRF_Response:
         """Return list of all users."""
-        serializer: CustomUserSerializer = CustomUserSerializer(
-            self.queryset,
+        response: DRF_Response = self.get_drf_response(
+            request=request,
+            data=self.queryset,
+            serializer_class=self.serializer_class,
             many=True
         )
 
-        return DRF_Response(
-            {'response': serializer.data}
-        )
+        return response
 
     def create(self, request: DRF_Request) -> DRF_Response:
         """Handle POST-request to show custom_users."""
